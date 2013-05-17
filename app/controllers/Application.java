@@ -14,7 +14,7 @@ public class Application extends Controller {
     }
 
     public static Result tasks(){
-        return TODO;
+        return ok(views.html.index.render(TaskController.all(), taskForm));
     }
 
     public static Result newTask(){
@@ -22,11 +22,13 @@ public class Application extends Controller {
         if(filledForm.hasErrors()){
             return badRequest(views.html.index.render(TaskController.all(), filledForm));
         }else{
+            TaskController.createTask(filledForm.get());
             return redirect(routes.Application.tasks());
         }
     }
 
     public static Result deleteTask(Long id){
-        return TODO;
+        TaskController.delete(id);
+        return redirect(routes.Application.tasks());
     }
 }
