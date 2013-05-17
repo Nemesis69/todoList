@@ -12,6 +12,6 @@ public class Task {
 
     public Long id;
 
-    @Required
+    @Required()
     public String label;
 }
